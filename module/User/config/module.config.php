@@ -18,16 +18,17 @@ return array(
             'generic' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route' => '/[:controller[/:action]][/]',
+                    'route' => '/[:controller[/:action[/id/:id]]][/]',
                     'defaults' => array(
                         '__NAMESPACE__' => 'User\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
                     ),
-//                    'constraints' => array(
-//                        'controller' => '[a-zA-Z0-9]',
-//                        'action' => '[a-zA-Z0-9]',
-//                    ),
+                    'constraints' => array(
+                        'controller' => '[a-zA-Z0-9]+',
+                        'action' => '[a-zA-Z0-9]+',
+                        'id' => '[0-9]+'
+                    ),
                 ),
             ),
         ),

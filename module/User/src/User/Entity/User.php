@@ -1,6 +1,6 @@
 <?php
 
-namespace User\Entity\Entities;
+namespace User\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,7 +18,6 @@ use Zend\Math\Rand;
  *                              @ORM\Index(name="fk_User_Resaler1_idx", columns={"fkResaler"})
  * })
  * 
- * @ORM\Entity(repositoryClass="User\Repository\User")
  */
 class User {
 
@@ -61,9 +60,16 @@ class User {
     /**
      * @var string
      *
-     * @ORM\Column(name="salt", type="string", length=14, nullable=false)
+     * @ORM\Column(name="ip", type="string", length=14, nullable=false)
      */
     private $ip;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=200, nullable=false)
+     */
+    private $email;
 
     public function __construct(array $options = array()) {
 
@@ -153,6 +159,14 @@ class User {
 
     function setIp($ip) {
         $this->ip = ip2long($ip);
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
     }
 
 }

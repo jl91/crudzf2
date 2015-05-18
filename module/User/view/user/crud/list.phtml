@@ -1,0 +1,66 @@
+<a href="<?= $this->url('generic', ['controller' => 'crud', 'action' => 'insert']); ?>">
+    <i class="glyphicon glyphicon-plus-sign"></i>
+    Adicionar mais
+</a>
+<hr>
+<table class="table table-bordered table-condensed table-responsive table-striped">
+    <thead>
+        <tr>
+            <th  class="text-center">
+                #
+            </th>
+            <th class="text-center">
+                username    
+            </th>
+            <th class="text-center">
+                password    
+            </th>
+<!--            <th class="text-center">
+                salt    
+            </th>-->
+            <th class="text-center">
+                email    
+            </th>
+            <th class="text-center">
+                lastLogin    
+            </th>
+            <th class="text-center">
+                ip    
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->collection as /* @var $user User\Entity\User */ $user): ?>
+            <tr>
+                <td class="text-center">
+                    <a href="<?= $this->url('generic', ['controller' => 'crud', 'action' => 'update', 'id' => $user->getIdUser()]); ?>">
+                        <?= $user->getIdUser(); ?>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <?= $user->getUsername(); ?>
+                </td>
+                <td class="text-center">
+                    <?= $user->getPassword(); ?>
+                </td>
+    <!--                <td class="text-center">
+                <?= $user->getSalt(); ?>
+                </td>-->
+                <td class="text-center">
+                    <?= $user->getEmail(); ?>
+                </td>
+                <td class="text-center">
+                    <?= $user->getLastLogin()->format('d/m/Y H:m:s'); ?>
+                </td>
+                <td class="text-center">
+                    <?= long2ip($user->getIp()); ?>
+                </td>
+                <td>
+                    <a href="<?= $this->url('generic', ['controller' => 'crud', 'action' => 'delete', 'id' => $user->getIdUser()]); ?>">
+                        <i class="glyphicon glyphicon-remove-circle"></i>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
